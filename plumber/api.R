@@ -14,4 +14,3 @@ function(year_start, year_end, uf, information_system) {
 
   return(dados_proc)
 }
-
