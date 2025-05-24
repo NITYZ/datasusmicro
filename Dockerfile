@@ -1,19 +1,10 @@
-FROM rocker/r-ver:4.3.1
+FROM rocker/plumber:4.3.1
 
-RUN apt-get update && apt-get install -y \
-  libcurl4-openssl-dev \
-  libssl-dev \
-  libxml2-dev \
-  libgit2-dev \
-  libicu-dev \
-  build-essential \
-  && rm -rf /var/lib/apt/lists/*
+# instalar remotes e microdatasus
+RUN install2.r remotes
+RUN Rscript -e 'remotes::install_github("rfsaldanha/microdatasus")'
 
-RUN Rscript -e "install.packages(c('remotes', 'plumber', 'jsonlite'), repos='https://cloud.r-project.org')" \
- && Rscript -e "remotes::install_github('rfsaldanha/microdatasus')"
-
-COPY plumber /plumber
-
+COPY plumber.R /app/plumber.R
 EXPOSE 8000
 
-CMD ["Rscript", "-e", "pr <- plumber::plumb('/plumber/api.R'); pr$run(host='0.0.0.0', port=8000)"]
+ENTRYPOINT ["R", "-e", "pr <- plumber::plumb('/app/plumber.R'); pr$run(host='0.0.0.0', port=8000)"]
