@@ -1,19 +1,19 @@
 FROM r-base:4.3.1
 
-# Instalar dependências do sistema
+# Instala dependências de sistema
 RUN apt-get update && apt-get install -y \
-  libcurl4-openssl-dev \
-  libssl-dev \
-  libxml2-dev \
-  libgit2-dev \
-  build-essential \
-  && rm -rf /var/lib/apt/lists/*
+    libcurl4-openssl-dev \
+    libssl-dev \
+    libxml2-dev \
+    libgit2-dev \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
 
-# Instalar pacotes R
+# Instala pacotes R
 RUN R -e "install.packages(c('remotes', 'plumber'), repos='https://cloud.r-project.org')" \
  && R -e "remotes::install_github('rfsaldanha/microdatasus')"
 
-# Copiar a API para o container
+# Copia o código da API
 COPY plumber /plumber
 
 EXPOSE 8000
