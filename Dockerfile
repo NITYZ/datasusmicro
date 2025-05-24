@@ -1,15 +1,6 @@
-FROM rocker/r-ver:4.3.1
+FROM rocker/plumber:latest
 
-RUN apt-get update && apt-get install -y \
-  libcurl4-openssl-dev \
-  libssl-dev \
-  libxml2-dev \
-  libgit2-dev \
-  libicu-dev \
-  build-essential \
-  && rm -rf /var/lib/apt/lists/*
-
-RUN R -e "install.packages(c('remotes', 'plumber', 'jsonlite'), repos='https://cloud.r-project.org')" \
+RUN install2.r --error remotes \
  && R -e "remotes::install_github('rfsaldanha/microdatasus')"
 
 COPY plumber /plumber
