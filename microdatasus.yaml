@@ -2,42 +2,33 @@ openapi: 3.0.0
 info:
   title: Microdatasus API
   version: 1.0.0
-  description: Acesse e processe dados do DataSUS usando o pacote microdatasus.
 servers:
   - url: https://microdatasus-api.onrender.com
 paths:
   /fetch_data:
     get:
-      summary: Busca e processa dados do DataSUS
+      summary: Baixar e processar dados do DataSUS
       parameters:
         - in: query
           name: year_start
           schema:
             type: integer
           required: true
-          description: Ano inicial (ex: 2010)
         - in: query
           name: year_end
           schema:
             type: integer
           required: true
-          description: Ano final (ex: 2015)
         - in: query
           name: uf
           schema:
             type: string
           required: true
-          description: Unidade federativa (ex: RJ)
         - in: query
           name: information_system
           schema:
             type: string
           required: true
-          description: Sistema de informação (ex: SIM-DO, SINASC, SIH-RD)
       responses:
         '200':
-          description: Dados processados com sucesso
-          content:
-            application/json:
-              schema:
-                type: object
+          description: Dados processados
