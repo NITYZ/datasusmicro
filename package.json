@@ -1,0 +1,12 @@
+{
+  "name": "pubmack-plugin",
+  "version": "1.0.0",
+  "description": "Plugin HTTP para PubMack GPT",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
