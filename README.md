@@ -1,19 +1,8 @@
 # Microdatasus API
 
-API construída com Plumber e microdatasus em R para acessar dados do DataSUS.
+API em R com Plumber + microdatasus.
 
-## Endpoints
+Deploy Docker compatível com Render.
 
-GET `/fetch_data`
-
-Parâmetros:
-- `year_start`: ano inicial
-- `year_end`: ano final
-- `uf`: unidade federativa (ex: RJ)
-- `information_system`: SIM-DO, SINASC ou SIH-RD
-
-## Deploy
-
-Hospede usando Render: https://render.com/
-
-Dockerfile incluído para facilitar deploy automático.
+Exemplo de uso:
+GET /fetch_data?year_start=2010&year_end=2012&uf=SP&information_system=SIM-DO
