@@ -1,4 +1,4 @@
-FROM rocker/plumber:4.3.1
+FROM rocker/plumber:latest
 
 # Instala remotes e microdatasus
 RUN install2.r remotes
